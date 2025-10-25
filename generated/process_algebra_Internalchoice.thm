@@ -1,0 +1,56 @@
+Specification "process_algebra_Internalchoice". 
+
+CoDefine bisim : proc -> proc -> prop by
+	
+bisim P Q := (forall a P', {step P a P'} -> exists Q', {step Q a Q'} /\ bisim P' Q')
+
+				/\
+
+              (forall a Q', {step Q a Q'} -> exists P', {step P a P'} /\ bisim P' Q').
+			  
+
+Theorem Bisim-cong-null: true -> bisim (null) (null). 
+coinduction.  
+ intros .  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ 
+
+
+Theorem Bisim-cong-prefixA: forall P1, forall P1', bisim P1 P1' -> bisim (prefixA P1) (prefixA P1'). 
+coinduction.  
+ intros SourceP1.  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ search.  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ search. 
+
+
+Theorem Bisim-cong-prefixB: forall P1, forall P1', bisim P1 P1' -> bisim (prefixB P1) (prefixB P1'). 
+coinduction.  
+ intros SourceP1.  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ search.  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ search. 
+
+
+Theorem Bisim-cong-choiceInternal: forall P1, forall P1', forall P2, forall P2', bisim P1 P1' -> bisim P2 P2' -> bisim (choiceInternal P1 P2) (choiceInternal P1' P2'). 
+coinduction.  
+ intros SourceP1 SourceP2.  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ search.  
+ search.  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ search.  
+ search. 
+
+

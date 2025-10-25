@@ -1,0 +1,10 @@
+Label L ::= (a) | (b)
+Process P ::= (null) | (prefixA P) | (prefixB P) | (projectionOne P)  | (projectionTwo P)  | (projectionThree P).
+
+(prefixA P1) --(a)--> P1.
+(projectionThree P1) --(a)-->  (projectionTwo P1')  <== P1 --(a)--> P1'.
+(projectionTwo P1) --(a)-->  (projectionOne P1')  <== P1 --(a)--> P1'.
+
+(prefixB P1) --(b)--> P1.
+(projectionThree P1) --(b)-->  (projectionTwo P1')  <== P1 --(b)--> P1'.
+(projectionTwo P1) --(b)-->  (projectionOne P1')  <== P1 --(b)--> P1'.

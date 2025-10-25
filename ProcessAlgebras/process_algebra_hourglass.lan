@@ -1,0 +1,6 @@
+Label L ::= (a) | (b)
+Process P ::= (null) | (prefixA P) | (prefixB P) | (hourglass P P). 
+
+(prefixA P1) --(a)--> P1.
+(prefixB P1) --(b)--> P1.
+(hourglass P1 P2) --(a)--> (hourglass P1' P2') <== P1 --(a)--> P1' /\ P2 --(b)--> P2'.

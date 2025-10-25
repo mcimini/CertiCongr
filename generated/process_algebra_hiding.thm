@@ -1,0 +1,106 @@
+Specification "process_algebra_hiding". 
+
+CoDefine bisim : proc -> proc -> prop by
+	
+bisim P Q := (forall a P', {step P a P'} -> exists Q', {step Q a Q'} /\ bisim P' Q')
+
+				/\
+
+              (forall a Q', {step Q a Q'} -> exists P', {step P a P'} /\ bisim P' Q').
+			  
+
+Theorem Bisim-cong-null: true -> bisim (null) (null). 
+coinduction.  
+ intros .  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ 
+
+
+Theorem Bisim-cong-prefixA: forall P1, forall P1', bisim P1 P1' -> bisim (prefixA P1) (prefixA P1'). 
+coinduction.  
+ intros SourceP1.  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ search.  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ search. 
+
+
+Theorem Bisim-cong-prefixB: forall P1, forall P1', bisim P1 P1' -> bisim (prefixB P1) (prefixB P1'). 
+coinduction.  
+ intros SourceP1.  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ search.  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ search. 
+
+
+Theorem Bisim-cong-hideA: forall P1, forall P1', bisim P1 P1' -> bisim (hideA P1) (hideA P1'). 
+coinduction.  
+ intros SourceP1.  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ BisimP1: case SourceP1(keep).  
+ H0: apply BisimP1 to Premise0.  
+ clear BisimP1.  
+ clear BisimP2.  
+ StepP1': apply H0. 
+ TargetP1': apply H1. 
+ clear H0.  
+ clear H1.  
+  
+ Arg0: apply CH to TargetP1'.  
+ search.  
+ BisimP1: case SourceP1(keep).  
+ H0: apply BisimP1 to Premise0.  
+ clear BisimP1.  
+ clear BisimP2.  
+ StepP1': apply H0. 
+ TargetP1': apply H1. 
+ clear H0.  
+ clear H1.  
+  
+ Arg0: apply CH to TargetP1'.  
+ search.  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ BisimP1: case SourceP1(keep).  
+ H0: apply BisimP2 to Premise0.  
+ clear BisimP1.  
+ clear BisimP2.  
+ StepP1': apply H0. 
+ TargetP1': apply H1. 
+ clear H0.  
+ clear H1.  
+  
+ Arg0: apply CH to TargetP1'.  
+ search.  
+ BisimP1: case SourceP1(keep).  
+ H0: apply BisimP2 to Premise0.  
+ clear BisimP1.  
+ clear BisimP2.  
+ StepP1': apply H0. 
+ TargetP1': apply H1. 
+ clear H0.  
+ clear H1.  
+  
+ Arg0: apply CH to TargetP1'.  
+ search. 
+
+
+Theorem Bisim-cong-hideB: forall P1, forall P1', bisim P1 P1' -> bisim (hideB P1) (hideB P1'). 
+coinduction.  
+ intros SourceP1.  
+ unfold. intros GOAL. 
+ Premise0: case GOAL(keep).  
+ intros GOAL.  
+ Premise0: case GOAL(keep).  
+ 
+
+

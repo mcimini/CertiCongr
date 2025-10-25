@@ -1,0 +1,8 @@
+Label L ::= (a) | (b) | (tau)
+Process P ::= (null) | (prefixA P) | (prefixB P) | (choiceInternal P P). 
+
+(prefixA P1) --(a)--> P1.
+(prefixB P1) --(b)--> P1.
+(choiceInternal P1 P2) --(tau)--> P1.
+(choiceInternal P1 P2) --(tau)--> P2.
+

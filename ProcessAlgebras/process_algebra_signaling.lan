@@ -1,0 +1,11 @@
+Label L ::= (a) | (b)
+Process P ::= (null) | (prefixA P) | (prefixB P) | (signalA P)   | (signalB P).
+
+(prefixA P1) --(a)--> P1.
+(prefixB P1) --(b)--> P1.
+(signalA P1)  --(a)--> (signalA P1). 
+(signalB P1)  --(b)--> (signalB P1). 
+(signalA P1) --(a)--> (signalA P1') <== P1 --(a)--> P1'.
+(signalA P1) --(b)--> (signalA P1') <== P1 --(b)--> P1'.
+(signalB P1) --(a)--> (signalB P1') <== P1 --(a)--> P1'.
+(signalB P1) --(b)--> (signalB P1') <== P1 --(b)--> P1'.

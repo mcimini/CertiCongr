@@ -1,0 +1,9 @@
+Label L ::= (a) | (b) | (tau)
+Process P ::= (null) | (prefixA P) | (prefixB P) | (hideA P) | (hideB P). 
+
+(prefixA P1) --(a)--> P1.
+(hideA P1) --(tau)--> (hideA P1') <== P1 --(a)--> P1'.
+
+(prefixB P) --(b)--> P.
+(hideA P1) --(tau)--> (hideA P1') <== P1 --(b)--> P1'.
+

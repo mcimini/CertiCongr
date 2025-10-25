@@ -1,0 +1,51 @@
+for each p in Process, 
+	Theorem Bisim-cong-_(p) : 
+	forall*, 
+	IMPLY(i in range(arity(p))): (Source_(getArgs(p,i)) : bisim getArgs(p,i) prime(getArgs(p,i))) endIMPLY -> (_ : bisim p prime(p)). 
+	Proof. 
+	coinduction. 
+	intros. 
+	unfold. 
+	Premise0 : case GOAL. 
+	for each r in p.rules[step]: 
+		for each pr in r.premises[step]: 
+			Bisim_(pr.sourceExp[none]) : case Source_(pr.sourceExp[none]). 
+			H_(0) : apply Bisim_(pr.sourceExp[none]) to Premise_(pr). 
+			clear Bisim_(pr.sourceExp[none]). 
+			clear Bisim_(pr.sourceExpNext[none]). 
+			Step_(pr.last[none]) : apply H0 to.
+			Target_(pr.last[none]) : apply H1 to.
+			clear H0.
+			clear H1
+		endfor.
+		if used(p, r.conclusion[none].last[none]) 
+			then assert forall*, IMPLY(i in range(arity(p))): (Source_(getArgs(p,i)) : bisim getArgs(p,i) prime(getArgs(p,i))) endIMPLY -> (_ : bisim p prime(p)). 
+				 skip. 
+				 clear CH. 
+				 CH : apply ASSERTED to
+		else noOp endif. 
+		call:bisimPairwise(p,r,r.conclusion[none].last[none],0). 
+		search
+	endfor. 
+	intros GOAL. 	
+	Premise0 : case GOAL. 
+	for each r in p.rules[step]: 
+		for each pr in r.premises[step]: 
+			Bisim_(pr.sourceExp[none]) : case Source_(pr.sourceExp[none]). 
+			H_(0) : apply Bisim_(pr.sourceExpNext[none]) to Premise_(pr). 
+			clear Bisim_(pr.sourceExp[none]). 
+			clear Bisim_(pr.sourceExpNext[none]). 
+			Step_(pr.last[none]) : apply H0 to.
+			Target_(pr.last[none]) : apply H1 to.
+			clear H0.
+			clear H1
+		endfor.
+		if used(p, r.conclusion[none].last[none]) 
+			then assert forall*, IMPLY(i in range(arity(p))): (Source_(getArgs(p,i)) : bisim getArgs(p,i) prime(getArgs(p,i))) endIMPLY -> (_ : bisim p prime(p)). 
+				 skip. 
+				 clear CH. 
+				 CH : apply ASSERTED to
+		else noOp endif. 
+		call:bisimPairwise(p,r,r.conclusion[none].last[none],0). 
+		search
+	endfor 
